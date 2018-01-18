@@ -6,29 +6,26 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 import javax.jms.Session;
 
-import static org.ruel.ActiveMQConfig.ORDER_QUEUE;
+import static org.ruel.ActiveMQConfig.HELLO_QUEUE;
 
 @Component
 public class HelloConsumer {
 
     private static Logger log = LoggerFactory.getLogger(HelloConsumer.class);
 
-    @JmsListener(destination = ORDER_QUEUE)
+    @JmsListener(destination = HELLO_QUEUE)
     public void receiveMessage(@Payload Hello hello, @Header MessageHeaders headers,
                                Message message, Session session){
-        log.info("received <" + hello + ">");
+        log.info("====================================================" + "\n" +
+            "Headers =" + headers + "\n" +
+            "Message =" + hello + "\n" +
+            "Session =" + session);
 
-        log.info("- - - - - - - - - - - - - - - - - - - - - - - -");
-        log.info("######          Message Details           #####");
-        log.info("- - - - - - - - - - - - - - - - - - - - - - - -");
-        log.info("headers: " + headers);
-        log.info("message: " + message);
-        log.info("session: " + session);
-        log.info("- - - - - - - - - - - - - - - - - - - - - - - -");
     }
 }

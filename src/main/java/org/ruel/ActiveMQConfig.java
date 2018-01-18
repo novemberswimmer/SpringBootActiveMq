@@ -13,7 +13,7 @@ import org.springframework.jms.support.converter.MessageType;
 @Configuration
 public class ActiveMQConfig {
 
-    public static final String ORDER_QUEUE = "order-queue";
+    public static final String HELLO_QUEUE = "hello-queue";
 
     @Bean
     public JmsListenerContainerFactory<?> queueListenerFactory() {

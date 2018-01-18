@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Service;
 
-import static org.ruel.ActiveMQConfig.ORDER_QUEUE;
+import static org.ruel.ActiveMQConfig.HELLO_QUEUE;
 
 @Service
 public class HelloSender {
@@ -18,6 +18,6 @@ public class HelloSender {
 
     public void send(Hello helloMessage){
         log.info("Sending with convertAndSend() to queue <" + helloMessage + ">");
-        jmsTemplate.convertAndSend(ORDER_QUEUE, helloMessage);
+        jmsTemplate.convertAndSend(HELLO_QUEUE, helloMessage);
     }
 }
